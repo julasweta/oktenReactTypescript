@@ -14,7 +14,6 @@ const initialState: CarsState = {
 
 export const CarsSlice = createSlice({
   name: 'cars',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     increment: (state) => {
