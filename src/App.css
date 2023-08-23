@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.cars{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.car{
+  width: 20%;
+  border: 2px solid gray;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.form {
+  padding: 10px;
+  background: linear-gradient(rgb(248, 249, 249), rgb(198, 206, 206)); /* Градієнтний фон */
+  border-radius: 10px; /* Додаємо округлі кути */
+  margin: 10px;
+}
+
+.show-form {
+  display: none;
+}
+
+.change-form {
+  background: linear-gradient(rgb(211, 211, 211), rgb(56, 223, 223)); /* Градієнтний фон */
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px; /* Додаємо округлі кути */
+  display: block;
+  opacity: 0; /* Початкова непрозорість */
+  animation: fadeIn 1s ease forwards; /* Анімація затемнення при з'явленні */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
+input, button {
+  margin-bottom: 5px; /* Додатковий відступ між інпутами */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%; /* Заповнює розмір батьківського елемента */
+}
+
+input[type="submit"] {
+  background-color: #396696;
   color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px; /* Вище і нижче відступи для кнопки */
+  cursor: pointer;
+  width: 10%;
+}
+/* Стилі для парних кнопок */
+button:nth-child(even) {
+  background-color: rgb(172, 172, 182);
 }
 
-.App-link {
-  color: #61dafb;
+/* Стилі для непарних кнопок */
+button:nth-child(odd) {
+  background-color: rgb(121, 144, 183);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Стилі для парних кнопок */
+.car:nth-child(even) {
+  background-color: rgb(242, 242, 246);
+}
+
+/* Стилі для непарних кнопок */
+.car:nth-child(odd) {
+  background-color: rgb(214, 224, 243);
 }

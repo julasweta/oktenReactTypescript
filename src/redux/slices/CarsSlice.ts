@@ -1,38 +1,112 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '../store'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { carService } from '../../services';
+import { ICar } from "../../interfaces";
+import { AxiosError } from 'axios';
 
-// Define a type for the slice state
 interface CarsState {
-  cars: number
+  cars: ICar[],
+  deleteTriger: boolean,
+  checkCar: ICar | null,
 }
 
-// Define the initial state using that type
+
 const initialState: CarsState = {
-  cars: 4,
+  cars: [],
+  deleteTriger: true,
+  checkCar: null
 }
+
+const getCars = createAsyncThunk("CarsSlice/getCars", async (_, thunkAPI) => {
+  try {
+    const { data } = await carService.getAll();
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e);
+  }
+});
+
+const update = createAsyncThunk<void, { id: number, car: ICar }>(
+  'carsSlice/update',
+  async ({ id, car }, { rejectWithValue, dispatch }) => {
+    try {
+      await carService.update(id, car);
+      dispatch(actions.setCheckCar([]))
+    } catch (e) {
+      const err = e as AxiosError
+      return rejectWithValue(err)
+    }
+  }
+)
+
+const create = createAsyncThunk<void, { data: ICar }>(
+  'carsSlice/create',
+  async ({ data }, { rejectWithValue, dispatch }) => {
+    console.log(data)
+    try {
+      await carService.create(data);
+      dispatch(actions.setCheckCar([]))
+    } catch (e) {
+      const err = e as AxiosError
+      return rejectWithValue(err)
+    }
+  }
+)
+
+const deleteCar = createAsyncThunk<void, { car: ICar }>(
+  'carsSlice/deleteCar',
+  async ({ car }, { rejectWithValue, dispatch }) => {
+    try {
+      await carService.delete(car.id);
+      dispatch(actions.setDeleteTriger());
+    } catch (e) {
+      const err = e as AxiosError
+      return rejectWithValue(err)
+    }
+  }
+)
 
 export const CarsSlice = createSlice({
   name: 'cars',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    increment: (state) => {
-      state.cars += 1
+    setDeleteTriger: (state) => {
+      state.deleteTriger = !state.deleteTriger
     },
-    decrement: (state) => {
-      state.cars -= 1
+    setCheckCar: (state, action) => {
+      state.checkCar = action.payload.car
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.cars += action.payload
+
     },
   },
+
+
+  extraReducers: (builder) =>
+    builder.addCase(getCars.fulfilled, (state, action) => {
+      state.cars = action.payload;
+    })
+      .addCase(update.rejected, (state, action) => {
+        alert(action.payload)
+      })
+      .addCase(create.rejected, (state, action) => {
+        alert(action.payload)
+      })
 })
 
-export const { increment, decrement, incrementByAmount } = CarsSlice.actions
+const { reducer: carsReducer, actions, } = CarsSlice;
 
-// Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.cars.cars
+const carsActions = {
+  ...actions,
+  getCars,
+  update,
+  create,
+  deleteCar
 
-export default CarsSlice.reducer
+}
+
+export {
+  carsActions,
+  carsReducer,
+}

@@ -1,2 +1,2 @@
 export * from './CarsPage';
-export * from './CarDetailPage';
+export * from './CarPage';
