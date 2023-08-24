@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "../layouts";
-import { CarsPage } from "../pages";
-import { CarPage } from "../pages/CarPage";
+import { CarDetailPage, CarsPage } from "../pages";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +17,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":id",
-            element: <CarPage />,
+            element: <CarDetailPage />,
           },
         ],
       },

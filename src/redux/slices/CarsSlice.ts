@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from '@reduxjs/toolkit';
 import { carService } from '../../services';
 import { ICar } from "../../interfaces";
 import { AxiosError } from 'axios';
@@ -76,10 +75,7 @@ export const CarsSlice = createSlice({
     setCheckCar: (state, action) => {
       state.checkCar = action.payload.car
     },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-
-    },
+   
   },
 
 

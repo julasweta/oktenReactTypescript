@@ -19,7 +19,7 @@ const CarPage = ({ car }: Props) => {
   }
 
   return (
-    <div className="car">
+    <div className="car-box">
       <h2>{car.brand}</h2>
       <p>{car.year}</p>
       <p>{car.price}</p>

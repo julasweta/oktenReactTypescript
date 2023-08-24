@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useEffect } from "react";
+import React, { FC,  useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ICar } from "../interfaces";
 import { carsActions } from "../redux/slices/CarsSlice";

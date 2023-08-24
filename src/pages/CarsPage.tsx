@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { carsActions } from "../redux/slices/CarsSlice";
 import { RootState } from "../redux/store";
 import { CarPage } from "./CarPage";
+import { Link, Outlet } from "react-router-dom";
 
 const CarsPage = () => {
   const { cars, deleteTriger } = useAppSelector((state: RootState) => state.cars);
@@ -18,7 +19,12 @@ const CarsPage = () => {
     <div>
       CarsPage
       <CarForm />
-      <div className="cars">{cars && cars.map((car) => <CarPage key={car.id} car={car} />)}</div>
+      <Outlet/>
+     
+        <div className="cars">{cars && cars.map((car) => <Link to={`/cars/${car.id}`} className="car">
+  <CarPage key={car.id} car={car} />
+</Link>)}</div>
+     
     </div>
   );
 };
