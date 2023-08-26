@@ -2,6 +2,9 @@ import {createBrowserRouter, Navigate} from "react-router-dom";
 import { MainLayout } from "../layouts";
 import { CarsPage } from "../pages";
 import CarDetailPage from "../pages/CarDetailPage";
+import LoginPage from "../pages/LoginPage";
+import { urls } from "../constants";
+import { RegisterForm } from "../components";
 
 
 const router = createBrowserRouter([
@@ -22,7 +25,16 @@ const router = createBrowserRouter([
                         element: <CarDetailPage/>
                     }
                 ]
+            },
+            {
+                path:urls.auth.login,
+                element:<LoginPage/>
+            },
+            {
+                path:urls.auth.register,
+                element:<RegisterForm/>
             }
+           
         ]
     }
 ]);
