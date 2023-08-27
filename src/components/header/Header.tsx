@@ -20,19 +20,20 @@ useEffect(()=>{
 
   return (
     <div className={css.header}>
-      {me !== null ? (
-        <div>{me.username}</div>
-      ) : (
-        <div>
-          <Link to={urls.auth.login}>
-            <button>Login</button>
-          </Link>
-          <Link to={urls.auth.register}>
-            <button>Register</button>
-          </Link>
-        </div>
-      )}
-    </div>
+    {me !== null ? (
+      <div className={css.userGreetings}>Welcome, {me.username}!</div>
+    ) : (
+      <div className={css.loginRegisterButtons}>
+        <Link to={urls.auth.login}>
+          <button className={css.button}>Login</button>
+        </Link>
+        <Link to={urls.auth.register}>
+          <button className={css.button}>Register</button>
+        </Link>
+      </div>
+    )}
+  </div>
+  
   );
 };
 

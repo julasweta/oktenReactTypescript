@@ -1,3 +1,33 @@
-.header{
+.header {
     background-color: aquamarine;
-}
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .userGreetings {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .loginRegisterButtons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .button {
+    padding: 8px 16px;
+    background-color: rgb(206, 217, 213);
+    border: 1px solid aquamarine;
+    color: rgb(82, 120, 107);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: aquamarine;
+    color: white;
+  }
+  

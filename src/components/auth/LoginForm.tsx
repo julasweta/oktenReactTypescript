@@ -33,7 +33,7 @@ const LoginForm = (props: Props) => {
         <input type="text" placeholder={"username"} {...register("username")} />
         <input type="text" placeholder={"password"} {...register("password")} />
         <button>login</button>
-        {errors?.response.data.detail ? <span>{errors.response.data.detail}</span> : "успішно"}
+        {errors?.response.data.detail ? <span>{errors.response.data.detail}</span> : ''}
       </form>
     </div>
   );

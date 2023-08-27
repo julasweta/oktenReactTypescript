@@ -1,9 +1,10 @@
-import React, { FC,  useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ICar } from "../interfaces";
 import { carsActions } from "../redux/slices/CarsSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { RootState } from "../redux/store";
+import css from "./components.module.css";
 
 const CarForm: FC = () => {
   const { checkCar } = useAppSelector((state: RootState) => state.cars);
@@ -13,7 +14,6 @@ const CarForm: FC = () => {
 
   useEffect(() => {
     if (checkCar != null) {
-      console.log(checkCar);
       setValue("id", checkCar.id);
       setValue("brand", checkCar.brand);
       setValue("price", checkCar.price);
@@ -41,21 +41,15 @@ const CarForm: FC = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(checkCar != null ? update : add)}>
-        <input type="text" placeholder={"id"} {...register("id")} disabled />
-        <input type="text" placeholder={"brand"} {...register("brand")} />
-        <input type="text" placeholder={"price"} {...register("price")} />
-        <input type="text" placeholder={"year"} {...register("year")} />
-        <input type="submit" value={checkCar != null ? "update" : "add"} />
+      <form onSubmit={handleSubmit(checkCar != null ? update : add)} className={css.formContainer}>
+        <input type="text" placeholder="id" {...register("id")} className={css.inputField} disabled />
+        <input type="text" placeholder="brand" {...register("brand")} className={css.inputField} />
+        <input type="text" placeholder="price" {...register("price")} className={css.inputField} />
+        <input type="text" placeholder="year" {...register("year")} className={css.inputField} />
+        <input type="submit" value={checkCar != null ? "update" : "add"} className={css.submitButton} />
       </form>
     </div>
   );
 };
 
 export { CarForm };
-
-
-
-
-
-
