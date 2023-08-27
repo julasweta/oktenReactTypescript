@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useAppSelector } from "../hooks/hooks";
 import { RootState } from "../redux/store";
 import { ICar } from "../interfaces";
@@ -20,12 +20,11 @@ const CarDetailPage = (props: Props) => {
   }, [chCar, id, cars]);
 
   return (
-    <div className={css.detail} >
-      <h2 style={{color:'red'}}>{chCar?.brand}</h2>
+    <div className={css.detail}>
+      <h2 style={{ color: "red" }}>{chCar?.brand}</h2>
       <img alt={chCar?.brand} src={chCar?.photo}></img>
-      <p style={{color:'red'}}>{chCar?.year}</p>
-      <p style={{color:'blue'}}>{chCar?.price}</p>
-     
+      <p style={{ color: "red" }}>{chCar?.year}</p>
+      <p style={{ color: "blue" }}>{chCar?.price}</p>
     </div>
   );
 };
