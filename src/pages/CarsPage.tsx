@@ -19,23 +19,20 @@ const CarsPage = () => {
   const onPage = (act: string) => {
     dispatch(carsActions.setActivePage(act));
   };
-console.log(cars)
+
   return (
     <div>
       CarsPage
       <CarForm />
-      <div className={css.detail}><Outlet/></div>
-      
+      <div className={css.detail}>
+        <Outlet />
+      </div>
       <div>
         <button onClick={() => onPage("back")}>back</button>
         <span>page: {activePage}</span>
         <button onClick={() => onPage("next")}>next</button>
       </div>
-      <div className={css.items}>
-      {cars && cars.map((car) => 
-  <CarPage key={car.id} car={car} />
-)}
-      </div>
+      <div className={css.items}>{cars && cars.map((car) => <CarPage key={car.id} car={car} />)}</div>
     </div>
   );
 };

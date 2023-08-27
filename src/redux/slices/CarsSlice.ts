@@ -88,7 +88,7 @@ const deleteCar = createAsyncThunk<void, { car: ICar }>(
 )
 
 export const CarsSlice = createSlice({
-  name: 'cars',
+  name: 'carsSlice',
   initialState,
   reducers: {
     setDeleteTriger: (state) => {
